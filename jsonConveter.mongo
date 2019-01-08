@@ -1,0 +1,71 @@
+try {
+	db.crew.find({"crew": {$exists: true}}).forEach(function(doc){
+	    var jsonString = doc.crew;
+	    if (typeof jsonString === 'string' || jsonString instanceof String) {
+	    	var goodJson = JSON.parse(jsonString);
+	    	doc.crew = goodJson;
+	    	db.crew.save(doc);
+	    } else {
+	    }
+	})
+} catch (e) {
+	
+}
+
+try {
+	db.cast.find({"cast": {$exists: true}}).forEach(function(doc){
+	    var jsonString = doc.cast;
+	    if (typeof jsonString === 'string' || jsonString instanceof String) {
+	    	var goodJson = JSON.parse(jsonString);
+	    	doc.cast = goodJson;
+	    	db.cast.save(doc);
+	    } else {
+	    }
+	})
+} catch (e) {
+}	
+
+try {
+	db.genres.find({"genres": {$exists: true}}).forEach(function(doc){
+	    var jsonString = doc.genres;
+	    if (typeof jsonString === 'string' || jsonString instanceof String) {
+	    	var goodJson = JSON.parse(jsonString);
+	    	doc.genres = goodJson;
+	    	db.genres.save(doc);
+	    } else {
+	    }
+	})
+} catch (e) {
+	
+}
+
+try {
+	db.keywords.find({"keywords": {$exists: true}}).forEach(function(doc){
+	    var jsonString = doc.keywords;
+	    if (typeof jsonString === 'string' || jsonString instanceof String) {
+	    	var goodJson = JSON.parse(jsonString);
+	    	doc.keywords = goodJson;
+	    	db.keywords.save(doc);
+	    } else {
+	    }
+	})
+} catch (e) {
+	
+}
+
+try {
+	db.production.find({"production_companies": {$exists: true}}).forEach(function(doc){
+	    var jsonString = doc.production_companies;
+	    if (typeof jsonString === 'string' || jsonString instanceof String) {
+	    	var goodJson = JSON.parse(jsonString);
+	    	doc.production_companies = goodJson;
+	    	db.production.save(doc);
+	    } else {
+	    }
+	})
+} catch (e) {
+	
+}
+
+
+db.crew.find( {"movie_id": 824}, {crew: 1} );

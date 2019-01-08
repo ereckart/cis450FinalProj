@@ -1,0 +1,94 @@
+---
+title: "CIS_450_Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+Main Data
+```{r}
+#imports data
+box.office <- read.csv(file = 'movieData.csv', header = TRUE, fill = TRUE)
+```
+
+```{r}
+#removes all movies with box offices of 0
+row_sub = apply(box.office[6:7], 1, function(row) !any(row==0) )
+cleaner <- box.office[row_sub,]
+rownames(cleaner) <- NULL
+```
+
+Clean Images Data
+```{r}
+images <- read.csv(file = 'MovieToMovieImage.csv', header = TRUE, fill = TRUE)
+images <- subset(images, select=c(1, 2))
+write.csv(images, file = 'clean_images.csv')
+
+```
+
+```{r}
+write.csv(cleaner, file = 'clean_movies.csv')
+
+```
+
+Scraper
+```{r}
+scraper <- cleaner[ , c(1, 4)]
+write.csv(scraper, file = 'scraper.csv')
+```
+
+```{r pressure, echo=FALSE}
+data <- read.csv(file = 'tmdb_5000_movies.csv', header = TRUE, fill = TRUE)
+```
+
+Names
+```{r}
+names <- data[ , c(4,18)]
+write.csv(names, file = "names.csv")
+
+```
+
+Ratings
+```{r}
+ratings <- data[ , c(4, 9, 19, 20)]
+write.csv(ratings, file = "ratings.csv")
+
+```
+
+Info
+```{r}
+info <- data[ , c(4, 3, 8, 14, 17)]
+write.csv(info, file = "info.csv")
+
+```
+```{r}
+genres <- data[ , c(4, 2)]
+write.csv(genres, file = "genres.csv")
+
+keywords <- data[ , c(4, 5)]
+write.csv(keywords, file = "keywords.csv")
+
+production.companies <- data[ , c(4, 10)]
+write.csv(production.companies, file = "production_companies.csv")
+```
+
+```{r}
+credits <- read.csv(file = 'tmdb_5000_credits.csv', header = TRUE, fill = TRUE)
+
+```
+```{r}
+cast <- credits[ , c(1, 3)]
+crew <- credits[ , c(1, 4)]
+write.csv(cast, file = "cast.csv")
+write.csv(crew, file = "crew.csv")
+
+```
+
