@@ -6,6 +6,7 @@ CIS 450
 Presentation Date: 12/15/2017
 
 FINAL REPORT
+
 INTRO AND PROJECT GOALS
 Our team created a site allowing users to look up general information on films as well as fun statistics related to the film industry.  We wanted to create a product that any movie-buff would want to use to find the answers to any questions they had while also keeping track of their favorite films.  Furthermore, we wanted to personalize the user’s experience as much as possible so we created sign-in functionality as well as a unique watchlist.
 
